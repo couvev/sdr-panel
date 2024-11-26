@@ -1,0 +1,131 @@
+/* estilos gerais */
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  background-color: #f9fafb; /* Fundo claro e neutro */
+  color: #333; /* Texto padrão */
+}
+
+h2,
+h3 {
+  color: #4a5568; /* Cinza escuro moderno */
+}
+
+button {
+  background-color: #4a90e2; /* Azul moderno */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 1em;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2b6cb0; /* Azul mais escuro */
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  background-color: #edf2f7; /* Fundo cinza claro */
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #4a90e2; /* Azul moderno */
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2); /* Sombra azul */
+}
+
+label {
+  font-weight: bold;
+  color: #4a5568; /* Cinza escuro */
+}
+
+/* estilos do login */
+.login-container {
+  width: 350px;
+  margin: 100px auto;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+}
+
+/* estilos do cartão de contato */
+.contact-card {
+  background-color: #ffffff;
+  padding: 20px;
+  padding-top: 1px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.contact-card h3 {
+  margin-bottom: 15px;
+  color: #2d3748; /* Cinza escuro */
+}
+
+.contact-card p {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #4a5568; /* Cinza moderado */
+}
+
+/* estilos dos botões de resultado */
+.result-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.result-buttons button {
+  flex: 1 1 calc(33% - 10px);
+  padding: 10px 15px;
+  font-size: 0.9em;
+  border-radius: 5px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #4a90e2;
+  transition: background-color 0.3s ease;
+}
+
+.result-buttons button:hover {
+  background-color: #2b6cb0; /* Azul mais escuro */
+}
+
+/* estilos do modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  padding: 20px;
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
