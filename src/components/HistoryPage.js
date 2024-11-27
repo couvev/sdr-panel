@@ -18,12 +18,12 @@ function HistoryPage({ token, username, onClose }) {
         endDate = formatDate(today);
       } else if (dateRange === "7days") {
         const pastDate = new Date(today);
-        pastDate.setDate(today.getDate() - 6); // Last 7 days including today
+        pastDate.setDate(today.getDate() - 6); // Últimos 7 dias incluindo hoje
         startDate = formatDate(pastDate);
         endDate = formatDate(today);
       } else if (dateRange === "30days") {
         const pastDate = new Date(today);
-        pastDate.setDate(today.getDate() - 29); // Last 30 days including today
+        pastDate.setDate(today.getDate() - 29); // Últimos 30 dias incluindo hoje
         startDate = formatDate(pastDate);
         endDate = formatDate(today);
       } else {
@@ -63,6 +63,24 @@ function HistoryPage({ token, username, onClose }) {
   const formatDateTime = (dateTimeString) => {
     const date = new Date(dateTimeString);
     return date.toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
+  };
+
+  // Função para formatar o telefone no formato desejado
+  const formatPhoneNumber = (phone) => {
+    if (!phone) return "Número indisponível";
+
+    // Remove todos os caracteres não numéricos
+    const cleaned = phone.replace(/\D/g, "");
+
+    // Formata no padrão (00) 9 9999-9999
+    if (cleaned.length === 11) {
+      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 3)} ${cleaned.slice(
+        3,
+        7
+      )}-${cleaned.slice(7)}`;
+    }
+
+    return phone; // Retorna o número original caso não esteja no formato esperado
   };
 
   return (
@@ -117,6 +135,7 @@ function HistoryPage({ token, username, onClose }) {
             <th>Nome</th>
             <th>Telefone</th>
             <th>Data e Hora</th>
+            <th>Ciclo</th>
             <th>Resultado</th>
             <th>Observações</th>
           </tr>
@@ -125,8 +144,9 @@ function HistoryPage({ token, username, onClose }) {
           {calls.map((call) => (
             <tr key={call._id}>
               <td>{call.contact_name}</td>
-              <td>{call.phone_number}</td>
+              <td>{formatPhoneNumber(call.phone_number)}</td>
               <td>{formatDateTime(call.call_time)}</td>
+              <td>{call.call_cycle}</td>
               <td>{call.result}</td>
               <td>{call.contact_observations}</td>
             </tr>

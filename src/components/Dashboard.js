@@ -6,18 +6,22 @@ import ContactCard from "./ContactCard";
 import ResultButtons from "./ResultButtons";
 import Filters from "./Filters";
 import ScheduleMeetingModal from "./ScheduleMeetingModal";
+import ScheduleFutureCallModal from "./ScheduleFutureCallModal";
 import LoadingOverlay from "./LoadingOverlay";
 import HistoryPage from "./HistoryPage";
+import FutureCallsPage from "./FutureCallsPage"; // Novo componente
 import styles from "./Dashboard.module.css"; // Importa o arquivo CSS para estilização
 
 function Dashboard({ token, username, setToken, setUsername }) {
   const [contact, setContact] = useState(null);
   const [filters, setFilters] = useState({});
-  const [showModal, setShowModal] = useState(false);
+  const [showMeetingModal, setShowMeetingModal] = useState(false);
+  const [showFutureCallModal, setShowFutureCallModal] = useState(false);
   const [assessors, setAssessors] = useState([]);
   const [loading, setLoading] = useState(false); // Estado de carregamento
   const [currentTime, setCurrentTime] = useState(""); // Estado para o horário atual
   const [showHistory, setShowHistory] = useState(false);
+  const [showFutureCalls, setShowFutureCalls] = useState(false); // Novo estado
 
   useEffect(() => {
     const fetchAssessors = async () => {
@@ -65,12 +69,10 @@ function Dashboard({ token, username, setToken, setUsername }) {
     fetchContact();
   }, [fetchContact]);
 
-  // Adicionar o useEffect para atualizar o horário a cada segundo
+  // Atualiza o horário a cada segundo
   useEffect(() => {
-    // Função para atualizar o horário
     const updateTime = () => {
       const now = new Date();
-      // Converter o horário para o fuso horário de Brasília (-03:00)
       const options = {
         timeZone: "America/Sao_Paulo",
         hour12: false,
@@ -83,12 +85,9 @@ function Dashboard({ token, username, setToken, setUsername }) {
       setCurrentTime(formattedTime);
     };
 
-    // Atualizar o horário imediatamente ao montar o componente
     updateTime();
-    // Atualizar o horário a cada segundo
     const intervalId = setInterval(updateTime, 1000);
 
-    // Limpar o intervalo ao desmontar o componente
     return () => clearInterval(intervalId);
   }, []);
 
@@ -118,9 +117,11 @@ function Dashboard({ token, username, setToken, setUsername }) {
         }
 
         if (result === "Reunião Marcada") {
-          setShowModal(true);
+          setShowMeetingModal(true);
+        } else if (result === "Ligar no futuro") {
+          setShowFutureCallModal(true);
         } else {
-          await fetchContact(); // Aguarda o próximo contato ser carregado
+          await fetchContact(); // Carrega o próximo contato
         }
       } catch (error) {
         console.error("Erro ao registrar ligação:", error);
@@ -132,7 +133,12 @@ function Dashboard({ token, username, setToken, setUsername }) {
   };
 
   const handleMeetingScheduled = () => {
-    setShowModal(false);
+    setShowMeetingModal(false);
+    fetchContact();
+  };
+
+  const handleFutureCallScheduled = () => {
+    setShowFutureCallModal(false);
     fetchContact();
   };
 
@@ -149,6 +155,14 @@ function Dashboard({ token, username, setToken, setUsername }) {
     setShowHistory(false);
   };
 
+  const handleFutureCalls = () => {
+    setShowFutureCalls(true);
+  };
+
+  const handleCloseFutureCalls = () => {
+    setShowFutureCalls(false);
+  };
+
   return (
     <div className={styles.dashboardContainer}>
       {loading && <LoadingOverlay />}
@@ -157,6 +171,12 @@ function Dashboard({ token, username, setToken, setUsername }) {
           token={token}
           username={username}
           onClose={handleCloseHistory}
+        />
+      ) : showFutureCalls ? (
+        <FutureCallsPage
+          token={token}
+          username={username}
+          onClose={handleCloseFutureCalls}
         />
       ) : (
         <>
@@ -169,6 +189,12 @@ function Dashboard({ token, username, setToken, setUsername }) {
               <button onClick={handleHistory} className={styles.historyButton}>
                 Histórico
               </button>
+              <button
+                onClick={handleFutureCalls}
+                className={styles.futureCallsButton}
+              >
+                Ligações Futuras
+              </button>
               <button onClick={handleLogout} className={styles.logoutButton}>
                 Sair
               </button>
@@ -178,18 +204,26 @@ function Dashboard({ token, username, setToken, setUsername }) {
           {contact ? (
             <>
               <ContactCard contact={contact} token={token} />
-              <ResultButtons handleResult={handleResult} />
+              <ResultButtons handleResult={handleResult} token={token} />
             </>
           ) : (
             <p>Nenhum contato disponível com os filtros atuais.</p>
           )}
-          {showModal && (
+          {showMeetingModal && (
             <ScheduleMeetingModal
               contact={contact}
               token={token}
               assessors={assessors}
-              onClose={() => setShowModal(false)}
+              onClose={() => setShowMeetingModal(false)}
               onScheduled={handleMeetingScheduled}
+            />
+          )}
+          {showFutureCallModal && (
+            <ScheduleFutureCallModal
+              contact={contact}
+              token={token}
+              onClose={() => setShowFutureCallModal(false)}
+              onScheduled={handleFutureCallScheduled}
             />
           )}
         </>

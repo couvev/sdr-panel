@@ -11,15 +11,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2000; /* Aumente o z-index para garantir que fique acima */
 }
 
 .modalContent {
   background-color: #ffffff;
   padding: 20px;
-  padding-right: 22px;
-  width: 400px;
   border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  position: relative;
 }
 
 .modalContent input {

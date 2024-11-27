@@ -1,0 +1,60 @@
+/* src/components/CallResultModal.module.css */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+}
+
+.modalContent h2 {
+  margin-top: 0;
+}
+
+.resultButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.resultButton {
+  flex: 1 1 calc(50% - 10px);
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #4a90e2;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.resultButton:hover {
+  background-color: #357ab8;
+}
+
+.cancelButton {
+  padding: 10px 15px;
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.cancelButton:hover {
+  background-color: #c53030;
+}

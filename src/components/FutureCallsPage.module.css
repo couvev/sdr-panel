@@ -1,0 +1,36 @@
+/* src/components/FutureCallsPage.module.css */
+
+.futureCallsContainer {
+  padding: 20px;
+}
+
+.backButton {
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contactCard {
+  background-color: #ffffff;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.doneButton {
+  padding: 10px 15px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.doneButton:hover {
+  background-color: #357ab8;
+}

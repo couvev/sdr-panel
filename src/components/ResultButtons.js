@@ -10,7 +10,6 @@ function ResultButtons({ handleResult }) {
     "Sem recurso",
     "Contato por Whatsapp",
     "Número errado",
-    "Retorno em outro horário",
     "Ligar no futuro",
     "Erro de ligação",
     "Desligou",
