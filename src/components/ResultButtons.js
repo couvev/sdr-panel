@@ -1,4 +1,7 @@
+// src/components/ResultButtons.js
+
 import React from "react";
+import styles from "./ResultButtons.module.css";
 
 function ResultButtons({ handleResult }) {
   const results = [
@@ -15,9 +18,13 @@ function ResultButtons({ handleResult }) {
   ];
 
   return (
-    <div className="result-buttons">
+    <div className={styles.resultButtons}>
       {results.map((result, index) => (
-        <button key={index} onClick={() => handleResult(result)}>
+        <button
+          key={index}
+          onClick={() => handleResult(result)}
+          className={styles.resultButton}
+        >
           {result}
         </button>
       ))}

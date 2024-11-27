@@ -7,7 +7,8 @@ import ResultButtons from "./ResultButtons";
 import Filters from "./Filters";
 import ScheduleMeetingModal from "./ScheduleMeetingModal";
 import LoadingOverlay from "./LoadingOverlay";
-import "./Dashboard.css"; // Importa o arquivo CSS para estilização
+import HistoryPage from "./HistoryPage";
+import styles from "./Dashboard.module.css"; // Importa o arquivo CSS para estilização
 
 function Dashboard({ token, username, setToken, setUsername }) {
   const [contact, setContact] = useState(null);
@@ -16,6 +17,7 @@ function Dashboard({ token, username, setToken, setUsername }) {
   const [assessors, setAssessors] = useState([]);
   const [loading, setLoading] = useState(false); // Estado de carregamento
   const [currentTime, setCurrentTime] = useState(""); // Estado para o horário atual
+  const [showHistory, setShowHistory] = useState(false);
 
   useEffect(() => {
     const fetchAssessors = async () => {
@@ -139,35 +141,58 @@ function Dashboard({ token, username, setToken, setUsername }) {
     setUsername("");
   };
 
+  const handleHistory = () => {
+    setShowHistory(true);
+  };
+
+  const handleCloseHistory = () => {
+    setShowHistory(false);
+  };
+
   return (
-    <div className="dashboard-container">
+    <div className={styles.dashboardContainer}>
       {loading && <LoadingOverlay />}
-      <div className="dashboard-header">
-        <h2 className="username">Bem-vindo, {username}</h2>
-        <div className="time-container">
-          <span className="current-time">{currentTime}</span>
-        </div>
-        <button onClick={handleLogout} className="logout-button">
-          Sair
-        </button>
-      </div>
-      <Filters token={token} setFilters={setFilters} />
-      {contact ? (
-        <>
-          <ContactCard contact={contact} />
-          <ResultButtons handleResult={handleResult} />
-        </>
-      ) : (
-        <p>Nenhum contato disponível com os filtros atuais.</p>
-      )}
-      {showModal && (
-        <ScheduleMeetingModal
-          contact={contact}
+      {showHistory ? (
+        <HistoryPage
           token={token}
-          assessors={assessors}
-          onClose={() => setShowModal(false)}
-          onScheduled={handleMeetingScheduled}
+          username={username}
+          onClose={handleCloseHistory}
         />
+      ) : (
+        <>
+          <div className={styles.dashboardHeader}>
+            <h2 className={styles.username}>Bem-vindo, {username}</h2>
+            <div className={styles.timeContainer}>
+              <span className={styles.currentTime}>{currentTime}</span>
+            </div>
+            <div className={styles.headerButtons}>
+              <button onClick={handleHistory} className={styles.historyButton}>
+                Histórico
+              </button>
+              <button onClick={handleLogout} className={styles.logoutButton}>
+                Sair
+              </button>
+            </div>
+          </div>
+          <Filters token={token} setFilters={setFilters} />
+          {contact ? (
+            <>
+              <ContactCard contact={contact} token={token} />
+              <ResultButtons handleResult={handleResult} />
+            </>
+          ) : (
+            <p>Nenhum contato disponível com os filtros atuais.</p>
+          )}
+          {showModal && (
+            <ScheduleMeetingModal
+              contact={contact}
+              token={token}
+              assessors={assessors}
+              onClose={() => setShowModal(false)}
+              onScheduled={handleMeetingScheduled}
+            />
+          )}
+        </>
       )}
     </div>
   );

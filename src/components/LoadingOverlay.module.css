@@ -1,6 +1,6 @@
-/* src/components/LoadingOverlay.css */
+/* src/components/LoadingOverlay.module.css */
 
-.loading-overlay {
+.loadingOverlay {
   position: fixed;
   top: 0;
   left: 0;

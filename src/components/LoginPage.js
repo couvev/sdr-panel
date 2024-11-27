@@ -1,5 +1,8 @@
+// src/components/LoginPage.js
+
 import React, { useState } from "react";
 import axios from "axios";
+import styles from "./LoginPage.module.css";
 
 function LoginPage({ setToken, setUsername }) {
   const [user, setUser] = useState("");
@@ -20,9 +23,9 @@ function LoginPage({ setToken, setUsername }) {
   };
 
   return (
-    <div className="login-container">
+    <div className={styles.loginContainer}>
       <h2>Fazer Login</h2>
-      <div className="login-form">
+      <div className={styles.loginForm}>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -38,7 +41,9 @@ function LoginPage({ setToken, setUsername }) {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit">Entrar</button>
+          <button type="submit" className={styles.loginButton}>
+            Entrar
+          </button>
         </form>
       </div>
     </div>

@@ -1,0 +1,85 @@
+/* src/components/ScheduleMeetingModal.module.css */
+
+/* estilos do modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: #ffffff;
+  padding: 20px;
+  padding-right: 22px;
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modalContent input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  margin: 5px auto;
+  margin-bottom: 15px;
+}
+
+.modalContent select {
+  margin-bottom: 15px;
+}
+
+.modalContent textarea {
+  width: calc(100% - 20px);
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  margin: 5px auto;
+  margin-bottom: 15px;
+}
+
+.agendarButton {
+  background-color: #28a745; /* Verde */
+}
+
+.agendarButton:hover {
+  background-color: #218838; /* Verde mais escuro no hover */
+}
+
+.cancelarButton {
+  background-color: #dc3545; /* Vermelho */
+}
+
+.cancelarButton:hover {
+  background-color: #c82333; /* Vermelho mais escuro no hover */
+}
+
+.modalContent button {
+  margin-top: 5px;
+  margin-left: 1px;
+  width: 100%;
+  padding: 12px;
+  padding-left: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modalContent h3 {
+  margin-top: 3px;
+  margin-bottom: 30px;
+  color: #2d3748;
+  font-size: 25px;
+}

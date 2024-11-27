@@ -1,10 +1,12 @@
+// src/components/LoadingOverlay.js
+
 import React from "react";
-import "./LoadingOverlay.css";
+import styles from "./LoadingOverlay.module.css";
 
 function LoadingOverlay() {
   return (
-    <div className="loading-overlay">
-      <div className="spinner"></div>
+    <div className={styles.loadingOverlay}>
+      <div className={styles.spinner}></div>
     </div>
   );
 }

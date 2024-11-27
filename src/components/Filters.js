@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Filters.css"; // Certifique-se de importar o arquivo CSS
+import styles from "./Filters.module.css"; // Certifique-se de importar o arquivo CSS
 
 function Filters({ token, setFilters }) {
   const [options, setOptions] = useState({});
@@ -49,11 +49,11 @@ function Filters({ token, setFilters }) {
   };
 
   return (
-    <div className="filters-container">
+    <div className={styles.filtersContainer}>
       <h3>Filtros</h3>
-      <div className="filters-grid">
+      <div className={styles.filtersGrid}>
         {Object.keys(options).map((field) => (
-          <div key={field} className="filter-item">
+          <div key={field} className={styles.filterItem}>
             <label>{fieldLabels[field] || field}:</label>
             <select
               value={selectedFilters[field] ?? ""}

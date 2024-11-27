@@ -1,0 +1,57 @@
+/* src/components/LoginPage.module.css */
+
+/* Estilos do container principal */
+.loginContainer {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 100px;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 30px; /* Espaçamento uniforme */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box; /* Inclui padding no tamanho total */
+}
+
+.loginContainer h2 {
+  color: #4a5568; /* Cinza escuro */
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+/* Inputs de texto */
+.loginForm input {
+  width: calc(100% - 20px); /* Para garantir alinhamento uniforme */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  margin: 5px auto; /* Centraliza os inputs */
+}
+
+/* Ajuste ao focar no input */
+.loginForm input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+}
+
+/* Botão */
+.loginButton {
+  margin-top: 30px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #4a90e2;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.loginButton:hover {
+  background-color: #357ab8;
+}

@@ -1,15 +1,16 @@
 /* estilos do dashboard */
-.dashboard-container {
+.dashboardContainer {
   padding: 20px;
   padding-top: 10px;
 }
 
-.dashboard-header {
+.dashboardHeader {
   margin: 0px;
+  margin-top: 15px;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 35px;
 }
 
 .username {
@@ -19,19 +20,41 @@
   color: #2d3748; /* Cinza escuro */
 }
 
-.time-container {
+.timeContainer {
   justify-self: center;
 }
 
-.current-time {
+.currentTime {
   font-size: 35px;
   font-weight: bold;
   color: #2d3748; /* Azul moderno */
 }
 
-.logout-button {
-  max-width: 150px;
+.headerButtons {
+  display: flex;
   justify-self: end;
+  align-items: center;
+}
+
+.historyButton {
+  max-width: 150px;
+  margin-right: 10px;
+  padding: 10px 15px;
+  background-color: #4a90e2; /* Azul moderno */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.historyButton:hover {
+  background-color: #357ab8; /* Azul mais escuro */
+}
+
+.logoutButton {
+  max-width: 150px;
   padding: 10px 15px;
   background-color: #e53e3e; /* Vermelho vibrante */
   color: white;
@@ -42,6 +65,6 @@
   transition: background-color 0.3s ease;
 }
 
-.logout-button:hover {
+.logoutButton:hover {
   background-color: #c53030; /* Vermelho mais escuro */
 }

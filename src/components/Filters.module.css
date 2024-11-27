@@ -1,5 +1,7 @@
+/* src/components/Filters.module.css */
+
 /* estilos dos filtros */
-.filters-container {
+.filtersContainer {
   background-color: #ffffff;
   padding: 15px;
   padding-top: 1px;
@@ -8,23 +10,23 @@
   margin-bottom: 20px;
 }
 
-.filters-container h3 {
+.filtersContainer h3 {
   margin-bottom: 15px;
   color: #2d3748; /* Cinza escuro */
 }
 
-.filters-grid {
+.filtersGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 15px;
 }
 
-.filter-item label {
+.filterItem label {
   color: #2d3748; /* Cinza escuro */
   margin-bottom: 5px;
 }
 
-.filter-item select {
+.filterItem select {
   padding: 10px;
   border: 1px solid #e2e8f0;
   border-radius: 5px;

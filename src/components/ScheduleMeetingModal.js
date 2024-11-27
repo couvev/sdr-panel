@@ -1,5 +1,8 @@
+// src/components/ScheduleMeetingModal.js
+
 import React, { useState } from "react";
 import axios from "axios";
+import styles from "./ScheduleMeetingModal.module.css";
 
 function ScheduleMeetingModal({
   contact,
@@ -55,8 +58,8 @@ function ScheduleMeetingModal({
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalContent}>
         <h3>Agendar Reunião</h3>
         <form onSubmit={handleSubmit}>
           <label>Data e Hora:</label>
@@ -91,10 +94,14 @@ function ScheduleMeetingModal({
             value={observations}
             onChange={(e) => setObservations(e.target.value)}
           ></textarea>
-          <button className="agendar-button" type="submit">
+          <button className={styles.agendarButton} type="submit">
             Agendar
           </button>
-          <button className="cancelar-button" type="button" onClick={onClose}>
+          <button
+            className={styles.cancelarButton}
+            type="button"
+            onClick={onClose}
+          >
             Cancelar
           </button>
         </form>
