@@ -13,6 +13,21 @@ function ScheduleMeetingModal({
   const [investmentValue, setInvestmentValue] = useState("");
   const [observations, setObservations] = useState("");
 
+  // Função para formatar valor como moeda
+  const formatCurrency = (value) => {
+    const numericValue = value.replace(/\D/g, ""); // Remove tudo que não é número
+    const formattedValue = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(numericValue / 100); // Divide por 100 para obter os centavos
+    return formattedValue;
+  };
+
+  const handleInvestmentChange = (e) => {
+    const inputValue = e.target.value;
+    setInvestmentValue(formatCurrency(inputValue)); // Atualiza o valor formatado
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -22,7 +37,7 @@ function ScheduleMeetingModal({
           contact_id: contact._id,
           scheduled_time: scheduledTime,
           assessor,
-          investment_value: investmentValue,
+          investment_value: investmentValue, // Valor formatado enviado
           observations,
         },
         {
@@ -68,15 +83,18 @@ function ScheduleMeetingModal({
           <input
             type="text"
             value={investmentValue}
-            onChange={(e) => setInvestmentValue(e.target.value)}
+            onChange={handleInvestmentChange}
+            placeholder="R$ 0,00"
           />
           <label>Observações:</label>
           <textarea
             value={observations}
             onChange={(e) => setObservations(e.target.value)}
           ></textarea>
-          <button type="submit">Agendar</button>
-          <button type="button" onClick={onClose}>
+          <button className="agendar-button" type="submit">
+            Agendar
+          </button>
+          <button className="cancelar-button" type="button" onClick={onClose}>
             Cancelar
           </button>
         </form>

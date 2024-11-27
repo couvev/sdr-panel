@@ -29,19 +29,23 @@ function Filters({ token, setFilters }) {
   }, [token]);
 
   const handleFilterChange = (field, value) => {
-    const updatedFilters = { ...selectedFilters, [field]: value };
+    let adjustedValue = value;
+    if (field === "CALLS" && value !== "") {
+      adjustedValue = Number(value); // Converte o valor para número
+    }
+    const updatedFilters = { ...selectedFilters, [field]: adjustedValue };
     setSelectedFilters(updatedFilters);
     setFilters(updatedFilters);
   };
 
   // Mapeamento para nomes mais amigáveis
   const fieldLabels = {
-    ADDRESSES_1_DISTRICT: "Bairro",
-    ADDRESSES_1_CITY: "Cidade",
+    ADDRESSES_1_DISTRICT: "UF",
     CAPITAL: "Capital",
     ATIVIDADE: "Atividade",
     FATURAMENTO: "Faturamento",
     FUNCIONARIOS: "Funcionários",
+    CALLS: "Ciclo",
   };
 
   return (
@@ -52,12 +56,15 @@ function Filters({ token, setFilters }) {
           <div key={field} className="filter-item">
             <label>{fieldLabels[field] || field}:</label>
             <select
-              value={selectedFilters[field] || ""}
+              value={selectedFilters[field] ?? ""}
               onChange={(e) => handleFilterChange(field, e.target.value)}
             >
               <option value="">Todos</option>
               {options[field].map((optionValue, index) => (
-                <option key={index} value={optionValue}>
+                <option
+                  key={index}
+                  value={field === "CALLS" ? Number(optionValue) : optionValue}
+                >
                   {optionValue}
                 </option>
               ))}

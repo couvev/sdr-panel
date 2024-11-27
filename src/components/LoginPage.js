@@ -15,30 +15,32 @@ function LoginPage({ setToken, setUsername }) {
       setToken(response.data.token);
       setUsername(user);
     } catch (error) {
-      alert(error.response.data.error || "Erro ao fazer login");
+      alert(error.response?.data?.error || "Erro ao fazer login");
     }
   };
 
   return (
     <div className="login-container">
-      <h2>Entrar</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Usuário"
-          value={user}
-          onChange={(e) => setUser(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Entrar</button>
-      </form>
+      <h2>Fazer Login</h2>
+      <div className="login-form">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Usuário"
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Entrar</button>
+        </form>
+      </div>
     </div>
   );
 }

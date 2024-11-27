@@ -9,9 +9,9 @@ function ResultButtons({ handleResult }) {
     "Número errado",
     "Retorno em outro horário",
     "Ligar no futuro",
-    "Reunião Marcada",
     "Erro de ligação",
     "Desligou",
+    "Reunião Marcada",
   ];
 
   return (

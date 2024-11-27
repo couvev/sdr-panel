@@ -21,7 +21,10 @@ const formatPhoneNumber = (phone) => {
 function ContactCard({ contact }) {
   return (
     <div className="contact-card">
-      <h3>Informações do Contato</h3>
+      <h3>
+        Informações do Contato{" "}
+        {contact.CALLS !== undefined && <span>- {contact.CALLS}° Ciclo</span>}
+      </h3>
       <p>
         <strong>Nome:</strong> {contact.NAME}
       </p>
